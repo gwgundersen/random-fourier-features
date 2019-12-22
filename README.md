@@ -1,0 +1,1 @@
+Code for kernel approximation and ridge regression using random Fourier features. Based on Rahimi and Recht's 2008 paper [Random Features for Large-Scale Kernel Machines](https://people.eecs.berkeley.edu/~brecht/papers/07.rah.rec.nips.pdf). See the [accompanying blog post](http://gregorygundersen.com/blog/) for more.

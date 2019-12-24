@@ -1,3 +1,10 @@
+"""============================================================================
+Fitting and plotting script for kernel ridge regression (see rffridge.py).
+
+For more, see the accompanying blog post:
+http://gregorygundersen.com/blog/2019/12/23/random-fourier-features/
+============================================================================"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 import numpy.random as npr

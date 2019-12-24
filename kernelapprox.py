@@ -1,8 +1,15 @@
+"""============================================================================
+Kernel approximation using random Fourier features. Based on "Random Features
+for Large-Scale Kernel Machines" by Rahimi and Recht (2008).
+
+For more, see the accompanying blog post:
+http://gregorygundersen.com/blog/2019/12/23/random-fourier-features/
+============================================================================"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 from   sklearn.metrics.pairwise import rbf_kernel
 from   sklearn.datasets import make_s_curve
-
 
 
 # -----------------------------------------------------------------------------

@@ -7,11 +7,9 @@ http://gregorygundersen.com/blog/2019/12/23/random-fourier-features/
 
 import matplotlib.pyplot as plt
 import numpy as np
-import numpy.random as npr
 from   rffridge import RFFRidgeRegression
 from   sklearn.gaussian_process.kernels import RBF
 from   sklearn.kernel_ridge import KernelRidge
-import time
 
 
 # -----------------------------------------------------------------------------

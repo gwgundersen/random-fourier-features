@@ -24,22 +24,23 @@ X_test = np.linspace(-10, 10, N*2)[:, None]
 fig, axes = plt.subplots(2, 1)
 fig.set_size_inches(10, 5)
 ax1, ax2  = axes
-colors    = plt.cm.Paired.colors
-ax1.scatter(X, y, s=30, c=[colors[0]])
-ax2.scatter(X, y, s=30, c=[colors[0]])
+cmap      = plt.cm.get_cmap('Blues')
+
+ax1.scatter(X, y, s=30, c=[cmap(0.3)])
+ax2.scatter(X, y, s=30, c=[cmap(0.3)])
 
 # Fit kernel ridege regression using an RBF kernel.
 clf    = KernelRidge(kernel=RBF())
 clf    = clf.fit(X, y)
 y_pred = clf.predict(X_test)
-ax1.plot(X_test, y_pred, c=colors[-1])
+ax1.plot(X_test, y_pred, c=cmap(0.9))
 
 # Fit kernel ridge regression using random Fourier features.
 rff_dim = 20
 clf     = RFFRidgeRegression(rff_dim=rff_dim)
 clf.fit(X, y)
 y_pred  = clf.predict(X_test)
-ax2.plot(X_test, y_pred, c=colors[-1])
+ax2.plot(X_test, y_pred, c=cmap(0.9))
 
 # Labels, etc.
 ax1.margins(0, 0.1)

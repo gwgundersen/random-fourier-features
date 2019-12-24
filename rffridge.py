@@ -1,6 +1,6 @@
 """============================================================================
 Kernel ridge regression using random Fourier features. Based on "Random 
-Features for Large-Scale Kernel Machines" by Rahimi and Recht (2008).
+Features for Large-Scale Kernel Machines" by Rahimi and Recht (2007).
 
 For more, see the accompanying blog post:
 http://gregorygundersen.com/blog/2019/12/23/random-fourier-features/

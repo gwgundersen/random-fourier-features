@@ -32,17 +32,17 @@ axes[0].set_yticks([])
 
 for R, ax in zip([1, 10, 100, 1000], axes[1:]):
 
-	W = np.random.normal(loc=0, scale=1, size=(R, D))
-	b = np.random.uniform(0, 2*np.pi, size=R)
-	B = np.repeat(b[:, np.newaxis], N, axis=1)
-	norm = 1./ np.sqrt(R)
-	Z = norm * np.sqrt(2) * np.cos(W @ X.T + B)
-	ZZ = 1./R * Z.T@Z
+    W = np.random.normal(loc=0, scale=1, size=(R, D))
+    b = np.random.uniform(0, 2*np.pi, size=R)
+    B = np.repeat(b[:, np.newaxis], N, axis=1)
+    norm = 1./ np.sqrt(R)
+    Z = norm * np.sqrt(2) * np.cos(W @ X.T + B)
+    ZZ = 1./R * Z.T@Z
 
-	ax.imshow(ZZ, cmap=plt.cm.Blues)
-	ax.set_title(r'$\mathbf{Z} \mathbf{Z}^{\top}$, $R=%s$' % R, **font)
-	ax.set_xticks([])
-	ax.set_yticks([])
+    ax.imshow(ZZ, cmap=plt.cm.Blues)
+    ax.set_title(r'$\mathbf{Z} \mathbf{Z}^{\top}$, $R=%s$' % R, **font)
+    ax.set_xticks([])
+    ax.set_yticks([])
 
 plt.tight_layout()
 plt.show()

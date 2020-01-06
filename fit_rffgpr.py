@@ -59,6 +59,7 @@ clf = GaussianProcessRegressor(kernel=kernel)
 clf = clf.fit(X_train, y_train)
 y_mean, y_cov = clf.predict(X_test, return_cov=True)
 ax1.plot(X_test, y_mean, c='r')
+# Plot model uncertainty.
 y_std = np.sqrt(np.diag(y_cov))
 ax1.fill_between(X_test.squeeze(), y_mean-2*y_std, y_mean+2*y_std,
     color='r', zorder=0, alpha=0.1)
@@ -69,6 +70,7 @@ clf     = RFFGaussianProcessRegressor(rff_dim=rff_dim)
 clf.fit(X_train, y_train)
 y_mean, y_cov = clf.predict(X_test)
 ax2.plot(X_test, y_mean, c='r', zorder=3)
+# Plot model uncertainty.
 y_std = np.sqrt(np.diag(y_cov))
 ax2.fill_between(X_test.squeeze(), y_mean-2*y_std, y_mean+2*y_std,
     color='r', zorder=0, alpha=0.1)

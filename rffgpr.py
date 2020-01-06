@@ -90,18 +90,3 @@ class RFFGaussianProcessRegressor:
         W = np.random.normal(loc=0, scale=1, size=(self.rff_dim, D))
         b = np.random.uniform(0, 2*np.pi, size=self.rff_dim)
         return W, b
-
-
-# ------------------------------------------------------------------------------
-
-def rbf_kernel(X, Y=None, length_scale=1):
-    if Y is None:
-        dists = pdist(X / length_scale, metric='sqeuclidean')
-        K = np.exp(-.5 * dists)
-        # convert from upper-triangular matrix to square matrix
-        K = squareform(K)
-        np.fill_diagonal(K, 1)
-    else:
-        dists = cdist(X / length_scale, Y / length_scale, metric='sqeuclidean')
-        K = np.exp(-.5 * dists)
-    return K

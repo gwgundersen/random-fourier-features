@@ -15,7 +15,6 @@ from   scipy.linalg import cholesky, cho_solve
 
 class RFFGaussianProcessRegressor:
 
-
     def __init__(self, rff_dim=10, sigma=1.0):
         """Gaussian process regression using random Fourier features.
 

@@ -30,6 +30,9 @@ class RFFGaussianProcessRegressor:
     def fit(self, X, y):
         """Fit model with training data X and target y.
         """
+        # NB: We could find alpha using a linear model. However, we could not
+        #     compute the covariance matrix in that case.
+
         # Build kernel approximation using RFFs.
         N, _    = X.shape
         Z, W, b = self._get_rffs(X, return_vars=True)

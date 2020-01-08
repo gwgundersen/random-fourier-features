@@ -8,6 +8,7 @@ http://gregorygundersen.com/blog/2019/12/23/random-fourier-features/
 
 import numpy as np
 from   sklearn.exceptions import NotFittedError
+from   sklearn.linear_model import Ridge
 
 
 # -----------------------------------------------------------------------------
@@ -19,12 +20,11 @@ class RFFRidgeRegression:
 
         rff_dim : Dimension of random feature.
         alpha :   Regularization strength. Should be a positive float.
-        sigma :   sigma^2 is the variance.
         """
+        self.fitted  = False
         self.rff_dim = rff_dim
-        self.alpha   = alpha
         self.sigma   = sigma
-        self.beta_   = None
+        self.lm      = Ridge(alpha=alpha)
         self.b_      = None
         self.W_      = None
 
@@ -32,21 +32,20 @@ class RFFRidgeRegression:
         """Fit model with training data X and target y.
         """
         Z, W, b = self._get_rffs(X, return_vars=True)
-        I = self.alpha * np.eye(self.rff_dim)
-        self.beta_ = np.linalg.solve(Z @ Z.T + I, Z @ y)
+        self.lm.fit(Z.T, y)
         self.b_ = b
         self.W_ = W
+        self.fitted = True
         return self
 
     def predict(self, X):
         """Predict using fitted model and testing data X.
         """
-        if self.beta_ is None or self.b_ is None or self.W_ is None:
-            msg = "This instance is not fitted yet. Call 'fit' with "\
-                  "appropriate arguments before using this method."
+        if not self.fitted:
+            msg = "Call 'fit' with appropriate arguments first."
             raise NotFittedError(msg)
         Z = self._get_rffs(X, return_vars=False)
-        return self.beta_ @ Z
+        return self.lm.predict(Z.T)
 
     def _get_rffs(self, X, return_vars):
         """Return random Fourier features based on data X, as well as random

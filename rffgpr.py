@@ -75,7 +75,12 @@ class RFFGaussianProcessRegressor:
         variables W and b.
         """
         N, D = X.shape
-        W, b = self._get_rvs(D)
+        if self.W_ is not None:
+            W, b = self.W_, self.b_
+        else:
+            W = np.random.normal(loc=0, scale=1, size=(self.rff_dim, D))
+            b = np.random.uniform(0, 2*np.pi, size=self.rff_dim)
+
         B    = np.repeat(b[:, np.newaxis], N, axis=1)
         norm = 1./ np.sqrt(self.rff_dim)
         Z    = norm * np.sqrt(2) * np.cos(self.sigma * W @ X.T + B)

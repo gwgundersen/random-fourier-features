@@ -36,7 +36,7 @@ for R, ax in zip([1, 10, 100, 1000], axes[1:]):
     B    = np.repeat(b[:, np.newaxis], N, axis=1)
     norm = 1./ np.sqrt(R)
     Z    = norm * np.sqrt(2) * np.cos(W @ X.T + B)
-    ZZ   = 1./R * Z.T@Z
+    ZZ   = Z.T@Z
 
     ax.imshow(ZZ, cmap=plt.cm.Blues)
     ax.set_title(r'$\mathbf{Z} \mathbf{Z}^{\top}$, $R=%s$' % R, **font)
